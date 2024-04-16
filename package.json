@@ -21,7 +21,7 @@
     "typescript",
     "nodejs"
   ],
-  "author": "probablyarth",
+  "author": "probablyarth <probablyarth@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/probablyArth/typescript-nodejs-zod/issues"

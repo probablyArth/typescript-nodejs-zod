@@ -1,11 +1,15 @@
 # server
+
 Template for express, typescript, zod projects.
 
 # Glossary
+
 - ## Absolute imports
+
   non-library imports that use absolute path instead of relative.
-  
+
   for ex:
+
   ```
   .
   ├── apps
@@ -19,20 +23,21 @@ Template for express, typescript, zod projects.
   └── middlewares
       └── logger.middleware.ts
   ```
-  
+
   ```typescript
   // folder1/folder2/a.ts
 
   // this is a relative import
-  import { getEnv } from "../../env/index.ts"
+  import { getEnv } from '../../env/index.ts';
 
   // this is an absolute import
-  import { getEnv } from "env/index.ts"
+  import { getEnv } from 'env/index.ts';
   ```
 
 # Features
+
 - support for [absolute imports](#absolute-imports) in both development and build using `tscpaths` and `tsconfig-paths`
-- `zod` for schema validation.
+- `zod` for validating `.env` vars.
 - `dotenv` for parsing `.env` files.
 - `morgan` for logging.
 - `jest` and `supertest` for tests.
@@ -40,39 +45,58 @@ Template for express, typescript, zod projects.
 - `prettier` for formatting.
 - `eslint` for linting and forcing code styles.
 
-## How to use absolute imports
-Absolute imports are not resolved by the default typescript build tool, `tscpaths` takes care of it.
+# How-to(s)
 
-if you want to create imports from a folder let's say `src/folder1` and name it `folder1`
+- ## How to use absolute imports
 
-add this entry in the `tsconfig.json`
-```jsonc
-{
-//tsconfig.json
-  "compilerOptions": {
+  Absolute imports are not resolved by the default typescript build tool, `tscpaths` takes care of it.
 
-    //...rest of the config
+  if you want to create imports from a folder let's say `src/folder1` and name it `folder1`
 
-    "paths": {
-      //..other paths
+  add this entry in the `tsconfig.json`
 
-      "folder1/*": ["folder1/*"]
-    }
+  ```jsonc
+  {
+    //tsconfig.json
+    "compilerOptions": {
+      //...rest of the config
+
+      "paths": {
+        //..other paths
+
+        "folder1/*": ["folder1/*"],
+      },
+    },
   }
-}
-```
+  ```
 
-you don't need to mention `src/folder1/*` because the `baseUrl` is set to `./src` which is changeable in the `tsconfig.json`
+  you don't need to mention `src/folder1/*` because the `baseUrl` is set to `./src` which is changeable in the `tsconfig.json`
 
-```jsonc
-//tsconfig.json
-{
-  "compilerOptions": {
-    "baseUrl": "./src" // <--change here
+  ```jsonc
+  //tsconfig.json
+  {
+    "compilerOptions": {
+      "baseUrl": "./src", // <--change here
+    },
   }
-}
+  ```
 
-```
+- ## How to add env vars to the pre-existing zod schema
+
+  just add the key in the `envSchema` object in `./src/env/index.ts` and give it the value of `z.string()`
+
+  ```typescript
+  // ./src/env/index.ts
+  .
+  .
+  .
+  .
+
+  const envSchema = z.object({
+    // other variables
+    yourKey: z.string(),
+  });
+  ```
 
 ## setup
 
@@ -107,11 +131,13 @@ you don't need to mention `src/folder1/*` because the `baseUrl` is set to `./src
 - using Docker
 
   builidng docker image
+
   ```sh
   docker build -t <image_name> .
   ```
 
   running docker image
+
   ```sh
   docker run -e PORT=4000 -p 4000:4000 <image_name>
 
@@ -129,4 +155,3 @@ npm run test
 ```sh
 npm run lint
 ```
-
