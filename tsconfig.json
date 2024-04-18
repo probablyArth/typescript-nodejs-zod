@@ -18,8 +18,7 @@
       "env/*": ["env/*"],
       "apps/*": ["apps/*"],
       "middlewares/*": ["middlewares/*"]
-    },
-    "types": ["node", "jest"]
+    }
   },
   "ts-node": { "files": true, "require": ["tsconfig-paths/register"] },
   "include": ["src/**/*"]
