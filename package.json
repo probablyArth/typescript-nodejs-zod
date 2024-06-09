@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "template repository for projects using typescript and nodejs",
   "main": "dist/index.js",
-  "engines": {
-    "node": "^18.0.0"
-  },
   "scripts": {
     "start": "node dist/index.js",
     "build": "tsc; tscpaths -p tsconfig.json -s src -o dist",
@@ -28,9 +25,12 @@
   },
   "homepage": "https://github.com/probablyArth/typescript-nodejs-zod#readme",
   "dependencies": {
+    "axios": "^1.7.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "morgan": "^1.10.0",
+    "socket.io": "^4.7.5",
     "zod": "^3.22.4",
     "zod-express-middleware": "^1.4.0"
   },
